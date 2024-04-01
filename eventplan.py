@@ -2,10 +2,10 @@ import pandas as pd
 
 ######### Import csv file  #########
 
-input_file_path = '.../responses.csv' 
+input_file_path = 'PATH TO YOUR EXCEL FILE' 
 
 column_names = ['Timestamp', 'date', 'event', 'name']
-df = pd.read_csv(input_file_path, header = 0, names=column_names) 
+df = pd.read_excel(input_file_path, header = 0, names=column_names) 
 
 ######### Prepare df for work #########
 

@@ -35,7 +35,7 @@ pivot_df.index = pd.to_datetime(pivot_df.index, format='%d-%m-%y')
 pivot_df = pivot_df.sort_index(ascending=True)
 
 pivot_df.fillna("/", inplace=True)
-
+pivot_df.index = pivot_df.index.date
 
 ######### Save to csv  #########
 

@@ -1,6 +1,6 @@
 import pandas as pd
 
-file_path = '/Users/majaguseva/Desktop/CodingProjects/DimaEventPlan/Responses.csv'
+file_path = '.../responses.csv'
 
 column_names = ['Timestamp', 'date', 'event', 'name'] # new column names
 df = pd.read_csv(file_path, header = 0, names=column_names) #import data
@@ -38,5 +38,5 @@ pivot_df.fillna("/", inplace=True)
 
 
 # Save to csv
-output_file_path = '/Users/majaguseva/Desktop/CodingProjects/DimaEventPlan/output.xlsx'
+output_file_path = '.../output.xlsx'
 pivot_df.to_excel(output_file_path, index=False)

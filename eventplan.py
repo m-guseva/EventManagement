@@ -1,9 +1,9 @@
 import pandas as pd
 
-file_path = '.../responses.csv'
+input_file_path = '.../responses.csv'
 
 column_names = ['Timestamp', 'date', 'event', 'name'] # new column names
-df = pd.read_csv(file_path, header = 0, names=column_names) #import data
+df = pd.read_csv(input_file_path, header = 0, names=column_names) #import data
 
 ######### Prepare df for work #########
 

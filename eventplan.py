@@ -3,7 +3,7 @@ from datetime import datetime
 
 ######### Import csv file  #########
 
-input_file_path = 'PATH TO YOUR EXCEL FILE' 
+input_file_path = 'Responses.xlsx' 
 
 column_names = ['Timestamp', 'date', 'event', 'name']
 df = pd.read_excel(input_file_path, header = 0, names=column_names) 
@@ -39,5 +39,5 @@ pivot_df.fillna("/", inplace=True)
 
 ######### Save to csv  #########
 
-output_file_path = '.../output.xlsx'
-pivot_df.to_excel(output_file_path, index=False)
+output_file_path = 'output.xlsx'
+pivot_df.to_excel(output_file_path, index=True)

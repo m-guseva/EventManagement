@@ -1,9 +1,11 @@
 import pandas as pd
 
-input_file_path = '.../responses.csv'
+######### Import csv file  #########
 
-column_names = ['Timestamp', 'date', 'event', 'name'] # new column names
-df = pd.read_csv(input_file_path, header = 0, names=column_names) #import data
+input_file_path = '.../responses.csv' 
+
+column_names = ['Timestamp', 'date', 'event', 'name']
+df = pd.read_csv(input_file_path, header = 0, names=column_names) 
 
 ######### Prepare df for work #########
 
@@ -27,16 +29,13 @@ df['Date'] = df['Date'].dt.strftime('%d-%m')
 
 ######### Create new output df #########
 
-# Determine unique dates:
-date_list = list(df['Date'].unique())
-
-
 pivot_df = df.pivot_table(index='Date', columns='Event', values='name', aggfunc=lambda x: ', '.join(x))
 pivot_df = pivot_df.sort_values(by='Date', ascending=False)
 pivot_df = pivot_df.reset_index()
 pivot_df.fillna("/", inplace=True)
 
 
-# Save to csv
+######### Save to csv  #########
+
 output_file_path = '.../output.xlsx'
 pivot_df.to_excel(output_file_path, index=False)

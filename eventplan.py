@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 
 ######### Import csv file  #########
 
@@ -24,14 +25,15 @@ df = df.assign(Date=df['date'].str.split(', ')).explode('Date')
 df = df.drop(columns=['date', 'Timestamp', 'event'])
 
 # Convert date to normal date form
-df['Date'] = pd.to_datetime(df['Date'], format='%a %dth %B')
-df['Date'] = df['Date'].dt.strftime('%d-%m')
-
+current_year = datetime.now().year
+# Convert dates and include the current year
+df['Date'] = df['Date'].apply(lambda x: datetime.strptime(x, '%a %dth %B').replace(year=current_year)).dt.strftime('%d-%m-%y')
 ######### Create new output df #########
 
 pivot_df = df.pivot_table(index='Date', columns='Event', values='name', aggfunc=lambda x: ', '.join(x))
-pivot_df = pivot_df.sort_values(by='Date', ascending=False)
-pivot_df = pivot_df.reset_index()
+pivot_df.index = pd.to_datetime(pivot_df.index, format='%d-%m-%y')
+pivot_df = pivot_df.sort_index(ascending=True)
+
 pivot_df.fillna("/", inplace=True)
 
 
